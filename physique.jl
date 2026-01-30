@@ -13,7 +13,7 @@ end
 function resultante!(list_goos)
     for goo in list_goos
         res = (0.0u"N",0.0u"N")
-        for i in goo.links
+        for i in goo.links_g
             res = res .+ force_rappel(goo, list_goos[][i])
         end
         res = res .+ poids(goo)
@@ -31,12 +31,16 @@ end
 
 function newgoo(pos,masse=400.0u"g",rayon=10.0u"cm")
     return Goo(masse,rayon,(pos[1]u"m",pos[2]u"m"),(0.0u"m/s", 0.0u"m/s"),(0.0u"N",0.0u"N"),[])
-
 end
 
-function addgoo!(goos,ngoo)
-    for (i,goo) in enumerate(goos)
-        dsitance(goo,ngoo) < 0.2u"cm" && (push!(ngoo.links, i) ; push!(goo.links,length(goos)+1)) 
+function addgoo!(goos,ngoo,plats)
+    for (i,goo) in enumerate(goos[])
+        distance(goo,ngoo) < 0.2u"cm" && (push!(ngoo.links_g, i) ; push!(goo.links_g,length(goos)+1))
+    end
+    for plat in plats
+        dist=distance(ngoo,plat)[1]
+        (x,y)=distance(ngoo,plat)[2]
+        dist < 10u"cm" && (push!(plat.links_g,length(goos)+1) ;push!(ngoo.links_p,(x,y)) )
     end
     push!(goos,ngoos)
 end
@@ -64,7 +68,7 @@ function phyplat(plats,goos)
         for goo in goos
             dist = distance(goo, plat)[1]
             (x,y)=distance(goo, plat)[2]
-            if dist < eps + goo.rayon && x > plat.position[1] && x< plat.position[1] + plat.longueur
+            if dist < eps + goo.rayon && x > plat.position[1] && x< plat.position[1] + plat.largueur
                 goo.forces[2] = 0.0u"N"
             end
         end
@@ -76,18 +80,13 @@ function distance(goo::Goo, plateforme::Rectangle)
     Y = linspace(plateforme.position[2], plateforme.position[2]+ plateforme.longueur,1000)
     distance = distance((X[1],Y[1]),goo)
     coordonnées = (0u"m",0u"m")
-    if ((goo.position[1])> plateforme.position[1] + plateforme.largeur) && ((goo.position[1])< plateforme.position[1])
-        for x in X
-            for y in Y
-                if distance((x,y),goo)> distance
-                distance = distance((x,y),goo)
+    for x in X
+        for y in Y
+            if norme((x,y),goo) < distance
+                distance = norme((x,y),goo)
                 coordonnées = (x,y)
-                end
             end
         end
-    else
-        distance = goo.position[2]- goo.rayon - (plateforme.position[2] + longueur)
-        coordonnées = (goo.position[1],plateforme.position[2] + longueur)
     end
     (distance,coordonnées)
 end
@@ -95,3 +94,5 @@ end
 function distance(position, goo::Goo)
     return sqrt((position[1]-goo.position[1])^2 + (position[2]-goo.position[2])^2)
 end
+
+
