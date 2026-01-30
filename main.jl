@@ -22,7 +22,6 @@ push!(list_goos, goo)
 list_pos_goos_x = Observable(typeof(0.0u"m")[])
 list_pos_goos_y = Observable(typeof(0.0u"m")[])
 
-
 function resize!(list_pos_goos, list_goos)
     for i in 1:(length(list_goos) - length(list_pos_goos[]))
         push!(list_pos_goos[], 0.0u"m")
