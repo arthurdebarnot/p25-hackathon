@@ -13,7 +13,7 @@ list_goos = Goo[]
 
 goo = Goo(400.0u"g", 1.0u"cm", (0.0u"m", 0.0u"m"), (0.0u"m/s", 0.0u"m/s"), (0.0u"N", 0.0u"N"), Int[], Int[])
 
-push!(list_goos[], goo)
+push!(list_goos, goo)
 
 # dessine_moi_une_plateforme!(ax)
 
