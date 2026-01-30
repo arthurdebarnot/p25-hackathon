@@ -22,4 +22,7 @@ let fig = Figure()
     #arc!(ax,Point2f(0), 20, -π, π, color = :blue)
 end
 
-function dessine_moi_un_goo(fig,)
+function dessine_moi_un_goo(ax,goo::Goo)
+    poly!(ax,Circle(Point2f(goo.position[1], goo.position[2]), goo.rayon),color = :blue)
+end
+
