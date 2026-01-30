@@ -4,10 +4,10 @@ function dessine_moi_une_plateforme!(ax,plateforme :: Rectangle)
 end
 
 function dessine_moi_un_goo!(ax,goo::Goo)
-    poly!(ax,Circle(Point2f(ustrip(u"m",goo.position[1]), ustrip(u"m",goo.position[2])), ustrip(u"m",goo.rayon),color = :blue))
+    poly!(ax, Circle(Point2f(ustrip(u"m",goo.position[1]), ustrip(u"m",goo.position[2])), ustrip(u"m",goo.rayon)); color=:blue)
 end
 
-function dessine_moi_les_goos!(ax, list_goo::Vector{Goo})
+function dessine_moi_les_goos!(ax, list_goo)
     dessine_moi_un_goo!.(ax, list_goo)
 end
 
