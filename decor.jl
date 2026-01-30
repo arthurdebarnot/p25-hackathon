@@ -18,3 +18,7 @@ function dessine_moi_les_liens(ax,goo ::Goo)
         lines!(ax,Point2f[goo.position,voisin.position],color = :blue)
     end
 end
+
+function dessine_moi_tous_les_liens(ax, list_goo)
+    dessine_moi_les_liens.(list_goo)
+end
