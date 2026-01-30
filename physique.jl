@@ -104,12 +104,12 @@ end
 function distance(goo::Goo, plateforme::Rectangle)
     X = LinRange(plateforme.position[1], plateforme.position[1]+ plateforme.largeur,1000)
     Y = LinRange(plateforme.position[2], plateforme.position[2]+ plateforme.longueur,1000)
-    distance = distance((X[1],Y[1]),goo) #à corriger
+    distance = norm([goo.position[1]-X[1], goo.position[2]- X[2]]) #à corriger
     coordonnées = (0u"m",0u"m")
     for x in X
         for y in Y
-            if norme((x,y),goo) < distance
-                distance = norme((x,y),goo)
+            if norm([x-goo.position[1],y-goo.position[2]]) < distance
+                distance = norm([x-goo.position[1],y-goo.position[2]])
                 coordonnées = (x,y)
             end
         end
