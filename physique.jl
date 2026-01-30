@@ -103,3 +103,5 @@ end
 function distance(position, goo::Goo)
     return sqrt((position[1]-goo.position[1])^2 + (position[2]-goo.position[2])^2)
 end
+
+
