@@ -2,7 +2,7 @@ using GLMakie
 
 include("structures.jl")
 
-poids(goo::Goo) = (0,-goo.masse*G) 
+poids(goo::Goo) = (0.0u"N",-goo.masse*G) 
 
 function force_rappel(goo1::Goo, goo2::Goo)
     """
