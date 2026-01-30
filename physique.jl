@@ -66,7 +66,9 @@ function phyplat(plats,goos)
     eps=10^(-5)u"m"
     for plat in plats
         for goo in goos[]
-            if distance(goo, plat)[1] < eps + goo.rayon
+            dist = distance(goo, plat)[1]
+            (x,y)=distance(goo, plat)[2]
+            if dist < eps + goo.rayon && x > plat.position[1] && x< plat.position[1] + plat.longueur
                 goo.forces[2] = 0.0u"N"
             end
         end
