@@ -5,7 +5,7 @@ include("structures.jl")
 
 const g = Unitful.gn / 20
 
-using Makie.Colors
+using GLMakie.Colors
 let fig = Figure()
     ax = Axis(fig[1,1],aspect =DataAspect())
     xs = LinRange(0, 10, 100)

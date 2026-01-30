@@ -71,16 +71,16 @@ function phyplat(plats,goos)
     end
 end
 
-function distance(goo :: Goo, plateforme :: Rectangle)
+function distance(goo::Goo, plateforme::Rectangle)
     X = linspace(plateforme.position[1], plateforme.position[1]+ plateforme.largeur,1000)
     Y = linspace(plateforme.position[2], plateforme.position[2]+ plateforme.longueur,1000)
-    distance = norme((X[1],Y[1]),goo)
+    distance = distance((X[1],Y[1]),goo)
     coordonnées = (0u"m",0u"m")
     if ((goo.position[1])> plateforme.position[1] + plateforme.largeur) && ((goo.position[1])< plateforme.position[1])
         for x in X
             for y in Y
-                if norme((x,y),goo)> distance
-                distance = norme((x,y),goo)
+                if distance((x,y),goo)> distance
+                distance = distance((x,y),goo)
                 coordonnées = (x,y)
                 end
             end
@@ -92,6 +92,6 @@ function distance(goo :: Goo, plateforme :: Rectangle)
     (distance,coordonnées)
 end
 
-function norme(position, goo)
+function distance(position, goo::Goo)
     return sqrt((position[1]-goo.position[1])^2 + (position[2]-goo.position[2])^2)
 end
