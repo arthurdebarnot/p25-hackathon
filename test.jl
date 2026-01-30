@@ -4,11 +4,11 @@ using Unitful
 
 const g = Unitful.gn / 20
 
-struct Goo
-    m :: typeof(u"kg")
-    r :: typeof(u"m")
-    x :: typeof(u"m")
-    y :: typeof(u"m")
+mutable struct Goo
+    masse :: typeof(u"kg")
+    rayon :: typeof(u"m")
+    position :: typeof((u"m",u"m"))
+    id :: UInt8
 end
 
 using Makie.Colors
@@ -21,3 +21,5 @@ let fig = Figure()
     display(fig)
     #arc!(ax,Point2f(0), 20, -π, π, color = :blue)
 end
+
+function dessine_moi_un_goo(fig,)
