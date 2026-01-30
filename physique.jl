@@ -16,9 +16,9 @@ end
 
 function resultante!(list_goos)
     for goo in list_goos[]
-        res = (0,0)
+        res = (0.0u"N",0.0u"N")
         for i in goo.links
-            res.+=force_rappel(goo, list_goos[][i])
+            res = res .+ force_rappel(goo, list_goos[][i])
         end
         res = res .+ poids(goo)
         goo.forces=res
@@ -29,7 +29,7 @@ function norm(vecteur::typeof((0.0u"m", 0.0u"m")))
     sqrt(vecteur[1]^2 + vecteur[2]^2)
 end
 
-function distance(goo1, goo2)
+function distance(goo1::Goo, goo2::Goo)
     norm(goo1.position .- goo2.position)
 end
 
@@ -57,10 +57,8 @@ function updatecin!(goos,δt)
         y = y + δt * vy + (1/2)*ay*δt^2
         vx = vx + ax * δt
         vy = vy + ay * δt
-        goo.position[1]=x
-        goo.position[2]=y
-        goo.vitesse[1]=vx
-        goo.vitesse[2]=vy
+        goo.position = (x, y)
+        goo.vitesse = (vx, vy)
     end
 end
 
