@@ -15,3 +15,11 @@ struct Plateforme
     longueur::typeof(u"m")
     couleur::UInt16 # couleur html
 end
+
+abstract type Forme end
+
+struct Rectangle <: Forme
+    longueur::typeof(u"m")
+    largeur::typeof(u"m")
+    position::typeof((u"m",u"m"))
+end
