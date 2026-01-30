@@ -46,20 +46,20 @@ function newgoo!(goos,ngoo)
 end
 
 function updatecin!(goos,δt)
-    for goo in goos
-        x=goo.position[][1]
-        y=goo.position[][2]
-        vx=goo.vitesse[][1]
-        vy=goo.vitesse[][2]
-        ax=goo.forces[][1] / goo.masse
-        ay=goo.forces[][2] / goo.masse
+    for goo in goos[]
+        x=goo.position[1]
+        y=goo.position[2]
+        vx=goo.vitesse[1]
+        vy=goo.vitesse[2]
+        ax=goo.forces[1] / goo.masse
+        ay=goo.forces[2] / goo.masse
         x = x + δt * vx + (1/2)*ax*δt^2
         y = y + δt * vy + (1/2)*ay*δt^2
         vx = vx + ax * δt
         vy = vy + ay * δt
-        goo.position[][1]=x
-        goo.position[][2]=y
-        goo.vitesse[][1]=vx
-        goo.vitesse[][2]=vy
+        goo.position[1]=x
+        goo.position[2]=y
+        goo.vitesse[1]=vx
+        goo.vitesse[2]=vy
     end
 end
