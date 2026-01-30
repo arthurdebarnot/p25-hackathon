@@ -11,7 +11,7 @@ function force_rappel(goo1::Goo, goo2::Goo)
 end
 
 function resultante!(list_goos)
-    for goo in list_goos[]
+    for goo in list_goos
         res = (0.0u"N",0.0u"N")
         for i in goo.links
             res = res .+ force_rappel(goo, list_goos[][i])
@@ -35,14 +35,14 @@ function newgoo(pos,masse=400.0u"g",rayon=10.0u"cm")
 end
 
 function addgoo!(goos,ngoo)
-    for (i,goo) in enumerate(goos[])
+    for (i,goo) in enumerate(goos)
         dsitance(goo,ngoo) < 0.2u"cm" && (push!(ngoo.links, i) ; push!(goo.links,length(goos)+1)) 
     end
     push!(goos,ngoos)
 end
 
 function updatecin!(goos,δt)
-    for goo in goos[]
+    for goo in goos
         x=goo.position[1]
         y=goo.position[2]
         vx=goo.vitesse[1]
@@ -61,7 +61,7 @@ end
 function phyplat(plats,goos)
     eps=10^(-5)u"m"
     for plat in plats
-        for goo in goos[]
+        for goo in goos
             dist = distance(goo, plat)[1]
             (x,y)=distance(goo, plat)[2]
             if dist < eps + goo.rayon && x > plat.position[1] && x< plat.position[1] + plat.longueur
