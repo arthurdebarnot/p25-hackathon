@@ -1,7 +1,5 @@
 using GLMakie
 
-include("physique.jl")
-
 poids(goo::Goo) = (0,-goo.masse*G) 
 
 function force_rappel(goo1::Goo, goo2::Goo)
@@ -36,12 +34,15 @@ function create_link(goo1::Goo, goo2::Goo)
     end
 end
 
-exist_link(goo1::Goo, goo2::Goo) = liens[goo1.id, goo2.id]
+function newgoo(pos,masse=400.0u"g",rayon=10.0u"cm")
+    return Goo(masse,rayon,(cord[1]u"m",cord[2]u"m"),(0.0u"m/s", 0.0u"m/s"),(0.0u"N",0.0u"N"),[])
 
-function newgoo!(goos,ngoo)
+end
+
+function addgoo!(goos,ngoo)
     push!(goos,ngoos)
     for (i,goo) in enumerate(goos)
-        norm(goo.position,ngoo.position) < 0.2u"cm" && push!(goo.link, i) && push!(goos[][i].link,length(goos)+1) 
+        norm(goo.position,ngoo.position) < 0.2u"cm" && (push!(goo.link, i) ; push!(goos[][i].link,length(goos)+1)) 
     end
 end
 
