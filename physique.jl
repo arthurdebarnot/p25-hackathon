@@ -1,5 +1,7 @@
 using GLMakie
 
+include("structures.jl")
+
 poids(goo::Goo) = (0,-goo.masse*G) 
 
 function force_rappel(goo1::Goo, goo2::Goo)
@@ -18,7 +20,7 @@ function resultante!(list_goos)
         for i in goo.links
             res.+=force_rappel(goo, list_goos[][i])
         end
-        res.+=poids(goo)
+        res = res .+ poids(goo)
         goo.forces=res
     end
 end

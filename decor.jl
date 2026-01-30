@@ -20,5 +20,5 @@ function dessine_moi_les_liens!(ax,goo ::Goo)
 end
 
 function dessine_moi_tous_les_liens(ax, list_goo)
-    dessine_moi_les_liens.(list_goo)
+    dessine_moi_les_liens!.(ax, list_goo)
 end
