@@ -30,3 +30,10 @@ function dessine_moi_les_liens(ax,goo ::Goo)
         lines!(ax,Point2f[goo.position,voisin.position],color = :blue)
     end
 end
+
+
+# bla bla bla
+function piche()
+
+    println("piche")
+end
