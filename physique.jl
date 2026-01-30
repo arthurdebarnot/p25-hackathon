@@ -68,14 +68,21 @@ function distance(goo :: Goo, plateforme :: Rectangle)
     X = linspace(plateforme.position[1], plateforme.position[1]+ plateforme.largeur,1000)
     Y = linspace(plateforme.position[2], plateforme.position[2]+ plateforme.longueur,1000)
     distance = norme((X[1],Y[1]),goo)
-    for x in X
-        for y in Y
-            if norme((x,y),goo)> distance
+    coordonnées = (0u"m",0u"m")
+    if ((goo.position[1])> plateforme.position[1] + plateforme.largeur) && ((goo.position[1])< plateforme.position[1])
+        for x in X
+            for y in Y
+                if norme((x,y),goo)> distance
                 distance = norme((x,y),goo)
+                coordonnées = (x,y)
+                end
             end
         end
+    else
+        distance = goo.position[2]- goo.rayon - (plateforme.position[2] + longueur)
+        coordonnées = (goo.position[1],plateforme.position[2] + longueur)
     end
-    distance
+    (distance,coordonnées)
 end
 
 function norme(position, goo)
