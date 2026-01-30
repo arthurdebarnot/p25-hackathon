@@ -1,1 +1,1 @@
-fun
+include("structures.jl")
