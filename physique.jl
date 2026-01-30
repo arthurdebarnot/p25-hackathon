@@ -6,17 +6,31 @@ function force_rappel(goo1::Goo, goo2::Goo)
     """
     (x1, y1) = goo1.position
     (x2, y2) = goo2.position
-    f1 = -K.*(x1 - x2, y1 - y2) #s'applique au goo1
-    return f1
+    r,θ = coordonnées_cartésien_to_polar(x1-x2,y1-y2)
+	Fx = -k*(r-lgoo)*cos(θ)
+	Fy = -k*(r-lgoo)*sin(θ)
+    return (Fx,Fy)
 end
 function force_rappel(goo1::Goo, pos)
     """
     Crée une force de rappel appliquée au premier goo
     """
     (x1, y1) = goo1.position
-    (x2, y2) = pos
-    f1 = -K.*(x1 - x2, y1 - y2) #s'applique au goo1
-    return f1
+    (x2, y2) = plat.li
+    r,θ = coordonnées_cartésien_to_polar(x1-x2,y1-y2)
+	Fx = -k*(r-lplat)*cos(θ)
+	Fy = -k*(r-lplat)*sin(θ) 
+    return (Fx,Fy)
+end
+
+function coordonnées_cartésien_to_polar(x,z)
+	if x == 0
+		return (sqrt(x*x + z*z),pi/2)
+	elseif ustrip(x)>0
+		return (sqrt(x*x + z*z), atan(z/x))
+	else
+		return (sqrt(x*x + z*z), atan(z/x) + pi)
+	end
 end
 
 function resultante!(list_goos)
@@ -26,6 +40,9 @@ function resultante!(list_goos)
             res = res .+ force_rappel(goo, list_goos[][i])
         end
         res = res .+ poids(goo)
+        for plat in goo.links_p
+            res = res .+force_rappel(goo,plat)
+        end
         goo.forces=res
     end
 end
