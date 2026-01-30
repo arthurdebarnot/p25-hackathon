@@ -29,18 +29,17 @@ end
 # Ajouter un goo après un clic
 pos = Observable((0.0,0.0))
 
-scene = Scene(camera = campixel!)
-scatter!(scene, points, color = :gray)
+scene1 = Scene(camera = campixel!)
+scatter!(scene1, points, color = :gray)
 
-on(events(scene).mousebutton) do event
+on(events(scene1).mousebutton) do event
     if event.button == Mouse.left && event.action == Mouse.press
-        mp = events(scene).mouseposition[]
+        mp = events(scene1).mouseposition[]
         pos[]= mp
         notify(pos)
     end
 end
-
+scene1
 ngoo = newgoo(pos[])
 addgoo!(list_goos,ngoo,plats=nothing)
 
-scene
