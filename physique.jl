@@ -9,6 +9,15 @@ function force_rappel(goo1::Goo, goo2::Goo)
     f1 = -K.*(x1 - x2, y1 - y2) #s'applique au goo1
     return f1
 end
+function force_rappel(goo1::Goo, plat::Rectangle)
+    """
+    Crée une force de rappel appliquée au premier goo
+    """
+    (x1, y1) = goo1.position
+    (x2, y2) = plat.li
+    f1 = -K.*(x1 - x2, y1 - y2) #s'applique au goo1
+    return f1
+end
 
 function resultante!(list_goos)
     for goo in list_goos

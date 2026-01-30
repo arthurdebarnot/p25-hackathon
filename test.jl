@@ -2,7 +2,7 @@ using GLMakie
 using Unitful
 
 include("structures.jl")
-
+include("physique.jl")
 const g = Unitful.gn / 20
 
 using GLMakie.Colors
@@ -59,3 +59,6 @@ end
 function norme(position, goo)
     return sqrt((position[1]-goo.position[1])^2 + (position[2]-goo.position[2])^2)
 end
+
+goo = Goo(400.0u"g", 1.0u"cm", (0.0u"m", 0.0u"m"), (0.0u"m/s", 0.0u"m/s"), (0.0u"N", 0.0u"N"), Int[],[])
+plat=[Rectangle()]
