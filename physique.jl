@@ -2,18 +2,26 @@ using GLMakie
 
 include("physique.jl")
 
-poids(goo::Goo) = (goo.position,[0,-goo.masse*G]) #(origine du vecteur, direction)
+poids(goo::Goo) = (0,-goo.masse*G) 
 
-function rappel(goo1::Goo, goo2::Goo)
+function force_rappel(goo1::Goo, goo2::Goo)
     """
-    Crée deux forces de rappel, une pour chaque goo, s'ils sont liés. La force est de la forme (origine du vecteur, direction) l'origine du vecteur étant la position du goo soumis à la force
+    Crée une force de rappel appliquée au premier goo
     """
-    if exist_link(goo1,goo2)
-        (x1, y1) = goo1.position
-        (x2, y2) = goo2.position
-        f1 = (goo1.position, -K.*[x1 - x2,y1 - y2]) #(orgine du vecteur, direction)
-        f2 = (goo2.position, -K.*[x2 - x1,y2 - y1])
-        return f1, f2
+    (x1, y1) = goo1.position
+    (x2, y2) = goo2.position
+    f1 = -K.*(x1[] - x2[],y1[] - y2[]) #s'applique au goo1
+    return f1
+end
+
+function resultante!(list_goos)
+    res = (0,0)
+    for goo in list_goos
+        for i in goo.link
+            res.+=force_rappel(goo, list_goos[i])
+        end
+        res.+=poids(goo)
+        goo.forces[]=res
     end
 end
 

@@ -8,8 +8,10 @@ liens = Dict{Goo, Array{Bool}}
 mutable struct Goo
     masse::typeof(u"kg")
     rayon::typeof(u"cm")
-    position::typeof((Observable(0.0u"m"),Observable(0.0u"m")))
+    position::typeof(Observable((0.0u"m",0.0u"m")))
     id::UInt8 # numérote les goos
+    vitesse::typeof(Observable((0.0u"m/s",0.0u"m/s")))
+    forces::typeof(Observable((0.0u"N", 0.0u"N")))
 end
 
 abstract type Forme end
