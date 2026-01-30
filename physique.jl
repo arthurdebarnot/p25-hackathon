@@ -1,25 +1,6 @@
-using Unitful
 using GLMakie
 
-const G = Unitful.gn/20
-const K = 100u"J/m^2"
-liens = Dict{Goo, Array{Bool}}
-
-mutable struct Goo
-    masse::typeof(u"kg")
-    rayon::typeof(u"cm")
-    position::typeof((u"m",u"m"))
-    id::UInt8 # numérote les goos
-end
-
-struct Plateforme
-    longueur::typeof(u"m")
-    couleur::UInt16 # couleur html
-end
-
-
-fig = Figure(); display(fig)
-ax = Axis(fig[1,1])
+include("physique.jl")
 
 poids(goo::Goo) = (goo.position,[0,-goo.masse*G]) #(origine du vecteur, direction)
 
