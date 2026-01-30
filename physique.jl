@@ -61,7 +61,7 @@ end
 
 function addgoo!(goos,ngoo,plats)
     for (i,goo) in enumerate(goos[])
-        distance(goo,ngoo) < 0.2u"cm" && (push!(ngoo.links_g, i) ; push!(goo.links_g,length(goos)+1))
+        distance(goo,ngoo) < 20u"cm" && (push!(ngoo.links_g, i) ; push!(goo.links_g,length(goos)+1))
     end
     for plat in plats
         dist=distance(ngoo,plat)[1]
