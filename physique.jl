@@ -56,7 +56,7 @@ function distance(goo1::Goo, goo2::Goo)
 end
 
 function newgoo(pos,masse=400.0u"g",rayon=10.0u"cm")
-    return Goo(masse,rayon,(pos[1]u"m",pos[2]u"m"),(0.0u"m/s", 0.0u"m/s"),(0.0u"N",0.0u"N"),[])
+    return Goo(masse,rayon,(pos[1]u"m",pos[2]u"m"),(0.0u"m/s", 0.0u"m/s"),(0.0u"N",0.0u"N"),Int[],Int[])
 end
 
 function addgoo!(goos,ngoo,plats)

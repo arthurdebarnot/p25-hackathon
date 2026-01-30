@@ -67,4 +67,4 @@ on(events(scene1).mousebutton) do event
 end
 scene1
 ngoo = newgoo(pos[])
-addgoo!(list_goos,ngoo,plats=nothing)
+addgoo!(list_goos,ngoo, plats=nothing)
