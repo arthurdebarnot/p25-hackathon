@@ -2,7 +2,7 @@ using GLMakie
 
 include("structures.jl")
 
-poids(goo::Goo) = (0,-goo.masse*G) 
+poids(goo::Goo) = (0.0u"N",-goo.masse*G) 
 
 function force_rappel(goo1::Goo, goo2::Goo)
     """
@@ -16,9 +16,9 @@ end
 
 function resultante!(list_goos)
     for goo in list_goos[]
-        res = (0,0)
+        res = (0.0u"N",0.0u"N")
         for i in goo.links
-            res.+=force_rappel(goo, list_goos[][i])
+            res = res .+ force_rappel(goo, list_goos[][i])
         end
         res = res .+ poids(goo)
         goo.forces=res
@@ -29,7 +29,7 @@ function norm(vecteur::typeof((0.0u"m", 0.0u"m")))
     sqrt(vecteur[1]^2 + vecteur[2]^2)
 end
 
-function distance(goo1, goo2)
+function distance(goo1::Goo, goo2::Goo)
     norm(goo1.position .- goo2.position)
 end
 
