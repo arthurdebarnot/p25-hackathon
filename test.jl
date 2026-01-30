@@ -61,4 +61,6 @@ function norme(position, goo)
 end
 
 goo = Goo(400.0u"g", 1.0u"cm", (0.0u"m", 0.0u"m"), (0.0u"m/s", 0.0u"m/s"), (0.0u"N", 0.0u"N"), Int[],[])
-plat=[Rectangle()]
+plat=[Rectangle(1.0u"m",1.0u"m",(-0.5u"m",0.0u"m")),[]]
+
+newgoo((0.0,50.0))

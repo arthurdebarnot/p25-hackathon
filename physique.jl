@@ -9,12 +9,12 @@ function force_rappel(goo1::Goo, goo2::Goo)
     f1 = -K.*(x1 - x2, y1 - y2) #s'applique au goo1
     return f1
 end
-function force_rappel(goo1::Goo, plat::Rectangle)
+function force_rappel(goo1::Goo, pos)
     """
     Crée une force de rappel appliquée au premier goo
     """
     (x1, y1) = goo1.position
-    (x2, y2) = plat.li
+    (x2, y2) = pos
     f1 = -K.*(x1 - x2, y1 - y2) #s'applique au goo1
     return f1
 end
@@ -44,7 +44,7 @@ end
 
 function addgoo!(goos,ngoo,plats)
     for (i,goo) in enumerate(goos[])
-        distance(goo,ngoo) < 0.2u"cm" && (push!(ngoo.links_g, i) ; push!(goo.links_g,length(goos)+1))
+        distance(goo,ngoo) < 20u"cm" && (push!(ngoo.links_g, i) ; push!(goo.links_g,length(goos)+1))
     end
     for plat in plats
         dist=distance(ngoo,plat)[1]
