@@ -38,7 +38,7 @@ end
 
 function addgoo!(goos,ngoo)
     for (i,goo) in enumerate(goos[])
-        dsitance(goo,ngoo) < 0.2u"cm" && (push!(ngoo.link, i) ; push!(goo.link,length(goos)+1)) 
+        dsitance(goo,ngoo) < 0.2u"cm" && (push!(ngoo.links, i) ; push!(goo.links,length(goos)+1)) 
     end
     push!(goos,ngoos)
 end
@@ -66,8 +66,8 @@ function phyplat(plats,goos)
     eps=10^(-5)u"m"
     for plat in plats
         for goo in goos[]
-            if distance(goo, plat) < eps && z
-                goo.forces[2]=0.0u"N"
+            if distance(goo, plat)[1] < eps + goo.rayon
+                goo.forces[2] = 0.0u"N"
             end
         end
     end
