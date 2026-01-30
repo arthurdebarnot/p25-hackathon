@@ -31,7 +31,6 @@ end
 
 function newgoo(pos,masse=400.0u"g",rayon=10.0u"cm")
     return Goo(masse,rayon,(pos[1]u"m",pos[2]u"m"),(0.0u"m/s", 0.0u"m/s"),(0.0u"N",0.0u"N"),[])
-
 end
 
 function addgoo!(goos,ngoo)
@@ -95,3 +94,5 @@ end
 function distance(position, goo::Goo)
     return sqrt((position[1]-goo.position[1])^2 + (position[2]-goo.position[2])^2)
 end
+
+

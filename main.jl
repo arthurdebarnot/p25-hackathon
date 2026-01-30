@@ -25,3 +25,5 @@ on(events(fig).tick) do tick
     yield()
     notify(list_goos)
 end
+
+# Ajouter un goo après un clic
