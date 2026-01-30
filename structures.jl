@@ -1,6 +1,3 @@
-using Unitful
-using GLMakie
-
 const G = Unitful.gn/20
 const K = 100u"J/m^2"
 

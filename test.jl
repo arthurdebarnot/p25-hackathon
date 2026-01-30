@@ -41,3 +41,21 @@ function piche()
 
     println("piche")
 end
+
+function distance(goo :: Goo, plateforme :: Rectangle)
+    X = linspace(plateforme.position[1], plateforme.position[1]+ plateforme.largeur,1000)
+    Y = linspace(plateforme.position[2], plateforme.position[2]+ plateforme.longueur,1000)
+    distance = norme((X[1],Y[1]),goo)
+    for x in X
+        for y in Y
+            if norme((x,y),goo)> distance
+                distance = norme((x,y),goo)
+            end
+        end
+    end
+    distance
+end
+
+function norme(position, goo)
+    return sqrt((position[1]-goo.position[1])^2 + (position[2]-goo.position[2])^2)
+end

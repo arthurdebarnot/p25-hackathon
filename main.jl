@@ -1,4 +1,5 @@
 using GLMakie
+using Unitful
 
 include("structures.jl")
 include("physique.jl")
