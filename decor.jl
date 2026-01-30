@@ -9,10 +9,12 @@ end
 
 function dessine_moi_les_goos!(ax, list_goo::Vector{Goo})
     list_cercles = []
+    list_rayons = []
     for goo in list_goo
         push!(list_cercles,Circle(Point2f(ustrip(u"m",goo.position[1]), ustrip(u"m",goo.position[2]))))
+        push!(list_rayons,ustrip(u"m",goo.rayon))
     end
-    poly!(ax,Observable(list_cercles), ustrip(u"m",goo.rayon),color = :blue)
+    poly!(ax,Observable(list_cercles), Observable(liste_rayons),color = :blue)
 end
 
 function dessine_moi_les_liens!(ax,goo ::Goo)
