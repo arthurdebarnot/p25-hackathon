@@ -57,10 +57,8 @@ function updatecin!(goos,δt)
         y = y + δt * vy + (1/2)*ay*δt^2
         vx = vx + ax * δt
         vy = vy + ay * δt
-        goo.position[1]=x
-        goo.position[2]=y
-        goo.vitesse[1]=vx
-        goo.vitesse[2]=vy
+        goo.position = (x, y)
+        goo.vitesse = (vx, vy)
     end
 end
 
