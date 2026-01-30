@@ -2,6 +2,7 @@ using GLMakie
 
 include("structures.jl")
 include("physique.jl")
+include("decor.jl")
 
 fig = Figure() ; display(fig)
 
@@ -16,4 +17,5 @@ newgoo!(list_goos, goo)
 on(events(fig).tick) do tick
     resultante!(list_goos)
     updatecin!(list_goos, tick.delta_time)
+
 end

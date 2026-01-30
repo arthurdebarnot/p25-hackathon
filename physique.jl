@@ -10,7 +10,7 @@ function force_rappel(goo1::Goo, goo2::Goo)
     """
     (x1, y1) = goo1.position
     (x2, y2) = goo2.position
-    f1 = -K.*(x1[] - x2[],y1[] - y2[]) #s'applique au goo1
+    f1 = -K.*(x1 - x2, y1 - y2) #s'applique au goo1
     return f1
 end
 
