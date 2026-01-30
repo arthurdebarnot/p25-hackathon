@@ -11,7 +11,7 @@ function force_rappel(goo1::Goo, goo2::Goo)
 end
 
 function resultante!(list_goos)
-    for goo in list_goos[]
+    for goo in list_goos
         res = (0.0u"N",0.0u"N")
         for i in goo.links_g
             res = res .+ force_rappel(goo, list_goos[][i])
@@ -46,7 +46,7 @@ function addgoo!(goos,ngoo,plats)
 end
 
 function updatecin!(goos,δt)
-    for goo in goos[]
+    for goo in goos
         x=goo.position[1]
         y=goo.position[2]
         vx=goo.vitesse[1]
@@ -65,7 +65,7 @@ end
 function phyplat(plats,goos)
     eps=10^(-5)u"m"
     for plat in plats
-        for goo in goos[]
+        for goo in goos
             dist = distance(goo, plat)[1]
             (x,y)=distance(goo, plat)[2]
             if dist < eps + goo.rayon && x > plat.position[1] && x< plat.position[1] + plat.largueur
@@ -75,10 +75,10 @@ function phyplat(plats,goos)
     end
 end
 
-function distance(goo :: Goo, plateforme :: Rectangle)
+function distance(goo::Goo, plateforme::Rectangle)
     X = linspace(plateforme.position[1], plateforme.position[1]+ plateforme.largeur,1000)
     Y = linspace(plateforme.position[2], plateforme.position[2]+ plateforme.longueur,1000)
-    distance = norme((X[1],Y[1]),goo)
+    distance = distance((X[1],Y[1]),goo)
     coordonnées = (0u"m",0u"m")
     for x in X
         for y in Y
@@ -91,6 +91,6 @@ function distance(goo :: Goo, plateforme :: Rectangle)
     (distance,coordonnées)
 end
 
-function norme(position, goo)
+function distance(position, goo::Goo)
     return sqrt((position[1]-goo.position[1])^2 + (position[2]-goo.position[2])^2)
 end
