@@ -9,12 +9,12 @@ mutable struct Goo
     masse::typeof(u"kg")
     rayon::typeof(u"cm")
     position::typeof((u"m",u"m"))
-    id::UInt8 #numérote les goos
+    id::UInt8 # numérote les goos
 end
 
 struct Plateforme
     longueur::typeof(u"m")
-    couleur::typeof(UInt16) #couleur html
+    couleur::UInt16 # couleur html
 end
 
 
