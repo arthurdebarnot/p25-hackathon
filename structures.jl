@@ -8,7 +8,7 @@ mutable struct Goo
     vitesse::typeof((0.0u"m/s",0.0u"m/s"))
     forces::typeof((0.0u"N", 0.0u"N"))
     links_g::Vector{Int}
-    links_p
+    links_p::Vector{Int}
 end
 
 abstract type Forme end
