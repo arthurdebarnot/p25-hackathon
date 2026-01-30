@@ -15,7 +15,7 @@ end
 function resultante!(list_goos)
     for goo in list_goos[]
         res = (0,0)
-        for i in goo.link
+        for i in goo.links
             res.+=force_rappel(goo, list_goos[][i])
         end
         res.+=poids(goo)
@@ -23,14 +23,18 @@ function resultante!(list_goos)
     end
 end
 
-function norm(vecteur::typeof((u"cm",u"cm")))
+function norm(vecteur::typeof((0.0u"m", 0.0u"m")))
     sqrt(vecteur[1]^2 + vecteur[2]^2)
 end
 
+function distance(goo1, goo2)
+    norm(goo1.position .- goo2.position)
+end
+
 function newgoo!(goos,ngoo)
-    push!(goos,ngoos)
-    for (i,goo) in enumerate(goos)
-        norm(goo.position,ngoo.position) < 20u"cm" && push!(goo.link, i) && push!(goos[][i].link,length(goos)+1) 
+    push!(goos[],ngoo)
+    for (i, goo) in enumerate(goos[])
+        distance(goo, ngoo) <= 20u"cm" && (push!(goo.links, i) ; push!(goos[][i].links,length(goos[])+1))
     end
 end
 
