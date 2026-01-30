@@ -27,13 +27,6 @@ function norm(vecteur::typeof((u"cm",u"cm")))
     sqrt(vecteur[1]^2 + vecteur[2]^2)
 end
 
-function create_link(goo1::Goo, goo2::Goo)
-    if norm(goo1.position.-goo2.position) ≤ 20u"cm"
-        liens[goo1.id][goo2.id] = true
-        liens[goo2.id][goo1.id] = true
-    end
-end
-
 function newgoo(pos,masse=400.0u"g",rayon=10.0u"cm")
     return Goo(masse,rayon,(cord[1]u"m",cord[2]u"m"),(0.0u"m/s", 0.0u"m/s"),(0.0u"N",0.0u"N"),[])
 
