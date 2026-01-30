@@ -26,3 +26,9 @@ function create_link(goo1::Goo, goo2::Goo)
 end
 
 exist_link(goo1::Goo, goo2::Goo) = liens[goo1.id, goo2.id]
+
+function newgoo!(goos,ngoo)
+    for (i,goo) in enumerate(goos)
+        norm(goo.position,ngoo.position) < 0.2u"cm" && push!(goo.link, i) 
+    end
+end
