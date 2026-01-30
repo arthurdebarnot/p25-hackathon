@@ -16,12 +16,12 @@ end
 
 function resultante!(list_goos)
     res = (0,0)
-    for goo in list_goos
+    for goo in list_goos[]
         for i in goo.link
-            res.+=force_rappel(goo, list_goos[i])
+            res.+=force_rappel(goo, list_goos[][i])
         end
         res.+=poids(goo)
-        goo.forces[]=res
+        goo.forces=res
     end
 end
 
