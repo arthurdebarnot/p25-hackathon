@@ -2,7 +2,7 @@ using Unitful
 using GLMakie
 
 const G = Unitful.gn/20
-const K = 100u"J/m²"
+const K = 100u"J/m^2"
 liens = Dict{Goo, Array{Bool}}
 
 mutable struct Goo
@@ -34,7 +34,7 @@ function rappel(goo1::Goo, goo2::Goo)
 end
 
 function norm(vecteur::typeof((u"cm",u"cm")))
-    sqrt(vecteur[1]² + vecteur[2]²)
+    sqrt(vecteur[1]^2 + vecteur[2]^2)
 end
 
 function create_link(goo1::Goo, goo2::Goo)
