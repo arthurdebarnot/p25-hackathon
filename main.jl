@@ -30,7 +30,7 @@ function resize!(list_pos_goos, list_goos)
 end
 
 function updatepos!(list_pos_goos_x, list_pos_goos_y, list_goos)
-    for i in 1:length(list_pos_goos[])
+    for i in 1:length(list_pos_goos_x[])
         list_pos_goos_x[][i] = list_goos[i].position[1]
         list_pos_goos_y[][i] = list_goos[i].position[2]
     end
