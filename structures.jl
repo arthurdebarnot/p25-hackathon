@@ -7,7 +7,8 @@ mutable struct Goo
     position::typeof((0.0u"m",0.0u"m"))
     vitesse::typeof((0.0u"m/s",0.0u"m/s"))
     forces::typeof((0.0u"N", 0.0u"N"))
-    links::Vector{Int}
+    links_g::Vector{Int}
+    links_p
 end
 
 abstract type Forme end
@@ -18,4 +19,5 @@ struct Rectangle <: Forme
     longueur::typeof(u"m")
     largeur::typeof(u"m")
     position::typeof((u"m",u"m"))
+    links_g:: Vector{Int}
 end
