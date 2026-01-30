@@ -16,12 +16,12 @@ end
 
 function resultante!(list_goos)
     res = (0,0)
-    for goo in list_goos
+    for goo in list_goos[]
         for i in goo.link
-            res.+=force_rappel(goo, list_goos[i])
+            res.+=force_rappel(goo, list_goos[][i])
         end
         res.+=poids(goo)
-        goo.forces[]=res
+        goo.forces=res
     end
 end
 
@@ -39,7 +39,27 @@ end
 exist_link(goo1::Goo, goo2::Goo) = liens[goo1.id, goo2.id]
 
 function newgoo!(goos,ngoo)
+    push!(goos,ngoos)
     for (i,goo) in enumerate(goos)
-        norm(goo.position,ngoo.position) < 0.2u"cm" && push!(goo.link, i) 
+        norm(goo.position,ngoo.position) < 0.2u"cm" && push!(goo.link, i) && push!(goos[][i].link,length(goos)+1) 
+    end
+end
+
+function updatecin!(goos,δt)
+    for goo in goos[]
+        x=goo.position[1]
+        y=goo.position[2]
+        vx=goo.vitesse[1]
+        vy=goo.vitesse[2]
+        ax=goo.forces[1] / goo.masse
+        ay=goo.forces[2] / goo.masse
+        x = x + δt * vx + (1/2)*ax*δt^2
+        y = y + δt * vy + (1/2)*ay*δt^2
+        vx = vx + ax * δt
+        vy = vy + ay * δt
+        goo.position[1]=x
+        goo.position[2]=y
+        goo.vitesse[1]=vx
+        goo.vitesse[2]=vy
     end
 end
