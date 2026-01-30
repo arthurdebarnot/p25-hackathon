@@ -34,12 +34,12 @@ function distance(goo1, goo2)
 end
 
 function newgoo(pos,masse=400.0u"g",rayon=10.0u"cm")
-    return Goo(masse,rayon,(cord[1]u"m",cord[2]u"m"),(0.0u"m/s", 0.0u"m/s"),(0.0u"N",0.0u"N"),[])
+    return Goo(masse,rayon,(pos[1]u"m",pos[2]u"m"),(0.0u"m/s", 0.0u"m/s"),(0.0u"N",0.0u"N"),[])
 
 end
 
 function addgoo!(goos,ngoo)
-    for (i,goo) in enumerate(goos)
+    for (i,goo) in enumerate(goos[])
         dsitance(goo,ngoo) < 0.2u"cm" && (push!(ngoo.link, i) ; push!(goo.link,length(goos)+1)) 
     end
     push!(goos,ngoos)
@@ -65,10 +65,13 @@ function updatecin!(goos,δt)
 end
 
 function phyplat(plats,goos)
+    eps=10^(-5)u"m"
     for plat in plats
-        for goo in goos
-            if distance(goo, plat)
+        for goo in goos[]
+            if distance(goo, plat) < eps && z
+                goo.forces[2]=0.0u"N"
             end
         end
     end
 end
+
