@@ -1,7 +1,5 @@
 using GLMakie
 
-include("physique.jl")
-
 poids(goo::Goo) = (0,-goo.masse*G) 
 
 function force_rappel(goo1::Goo, goo2::Goo)
@@ -15,8 +13,8 @@ function force_rappel(goo1::Goo, goo2::Goo)
 end
 
 function resultante!(list_goos)
-    res = (0,0)
     for goo in list_goos[]
+        res = (0,0)
         for i in goo.link
             res.+=force_rappel(goo, list_goos[][i])
         end
@@ -29,19 +27,10 @@ function norm(vecteur::typeof((u"cm",u"cm")))
     sqrt(vecteur[1]^2 + vecteur[2]^2)
 end
 
-function create_link(goo1::Goo, goo2::Goo)
-    if norm(goo1.position.-goo2.position) ≤ 20u"cm"
-        liens[goo1.id][goo2.id] = true
-        liens[goo2.id][goo1.id] = true
-    end
-end
-
-exist_link(goo1::Goo, goo2::Goo) = liens[goo1.id, goo2.id]
-
 function newgoo!(goos,ngoo)
     push!(goos,ngoos)
     for (i,goo) in enumerate(goos)
-        norm(goo.position,ngoo.position) < 0.2u"cm" && push!(goo.link, i) && push!(goos[][i].link,length(goos)+1) 
+        norm(goo.position,ngoo.position) < 20u"cm" && push!(goo.link, i) && push!(goos[][i].link,length(goos)+1) 
     end
 end
 

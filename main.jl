@@ -14,8 +14,12 @@ goo = Goo(400u"g", 1u"cm", (0u"m", 0u"m"), (0u"m/s", 0u"m/s"), (0u"N", 0u"N"), I
 
 newgoo!(list_goos, goo)
 
+# dessine_moi_une_plateforme!(ax)
+
 on(events(fig).tick) do tick
     resultante!(list_goos)
     updatecin!(list_goos, tick.delta_time)
-
+    dessine_moi_les_goos!(ax, list_goos[])
+    yield()
+    notify(list_goos)
 end
