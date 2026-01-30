@@ -8,7 +8,11 @@ function dessine_moi_un_goo!(ax,goo::Goo)
 end
 
 function dessine_moi_les_goos!(ax, list_goo::Vector{Goo})
-    dessine_moi_un_goo!.(ax, list_goo)
+    list_cercles = []
+    for goo in list_goo
+        push!(list_cercles,Circle(Point2f(ustrip(u"m",goo.position[1]), ustrip(u"m",goo.position[2]))))
+    end
+    poly!(ax,Observable(list_cercles), ustrip(u"m",goo.rayon),color = :blue)
 end
 
 function dessine_moi_les_liens!(ax,goo ::Goo)
