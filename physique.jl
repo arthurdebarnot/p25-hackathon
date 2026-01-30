@@ -5,6 +5,9 @@ include("physique.jl")
 poids(goo::Goo) = (goo.position,[0,-goo.masse*G]) #(origine du vecteur, direction)
 
 function rappel(goo1::Goo, goo2::Goo)
+    """
+    Crée deux forces de rappel, une pour chaque goo, s'ils sont liés. La force est de la forme (origine du vecteur, direction) l'origine du vecteur étant la position du goo soumis à la force
+    """
     if exist_link(goo1,goo2)
         (x1, y1) = goo1.position
         (x2, y2) = goo2.position
