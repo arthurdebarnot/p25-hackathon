@@ -20,8 +20,8 @@ end
 
 function create_link(goo1::Goo, goo2::Goo)
     if norm(goo1.position.-goo2.position) ≤ 20u"cm"
-        liens[goo1.id,goo2.id] = true
-        liens[goo2.id, goo1.id] = true
+        liens[goo1.id][goo2.id] = true
+        liens[goo2.id][goo1.id] = true
     end
 end
 
