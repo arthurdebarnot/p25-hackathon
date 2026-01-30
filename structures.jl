@@ -8,7 +8,7 @@ liens = Dict{Goo, Array{Bool}}
 mutable struct Goo
     masse::typeof(u"kg")
     rayon::typeof(u"cm")
-    position::typeof((Observable(0.0u"m"),Observable(0.0u"m"))
+    position::typeof((Observable(0.0u"m"),Observable(0.0u"m")))
     id::UInt8 # numérote les goos
 end
 
