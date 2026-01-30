@@ -51,7 +51,7 @@ on(events(fig).tick) do tick
     notify(list_pos_goos_x)
     notify(list_pos_goos_y)
 end
-
+plat=[Rectangle(1.0u"m",1.0u"m",(-0.5u"m",0.0u"m"),Int[])]
 # Ajouter un goo après un clic
 pos = Observable((0.0,0.0))
 
@@ -67,4 +67,4 @@ on(events(scene1).mousebutton) do event
 end
 scene1
 ngoo = newgoo(pos[])
-addgoo!(list_goos,ngoo, plats=nothing)
+addgoo!(list_goos,ngoo, plat)

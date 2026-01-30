@@ -16,8 +16,8 @@ abstract type Forme end
 """ On considère qu'une plateforme / rectangle est repérée par son coin en bas à gauche
 """
 struct Rectangle <: Forme
-    longueur::typeof(u"m")
-    largeur::typeof(u"m")
-    position::typeof((u"m",u"m"))
+    longueur::typeof(1.0u"m")
+    largeur::typeof(1.0u"m")
+    position::typeof((1.0u"m",0.0u"m"))
     links_g:: Vector{Int}
 end

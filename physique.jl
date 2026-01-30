@@ -60,7 +60,7 @@ function newgoo(pos,masse=400.0u"g",rayon=10.0u"cm")
 end
 
 function addgoo!(goos,ngoo,plats)
-    for (i,goo) in enumerate(goos[])
+    for (i,goo) in enumerate(goos)
         distance(goo,ngoo) ≤ 20u"cm" && (push!(ngoo.links_g, i) ; push!(goo.links_g,length(goos)+1))
     end
     for plat in plats
@@ -102,9 +102,9 @@ function phyplat(plats,goos)
 end
 
 function distance(goo::Goo, plateforme::Rectangle)
-    X = linspace(plateforme.position[1], plateforme.position[1]+ plateforme.largeur,1000)
-    Y = linspace(plateforme.position[2], plateforme.position[2]+ plateforme.longueur,1000)
-    distance = distance((X[1],Y[1]),goo)
+    X = LinRange(plateforme.position[1], plateforme.position[1]+ plateforme.largeur,1000)
+    Y = LinRange(plateforme.position[2], plateforme.position[2]+ plateforme.longueur,1000)
+    distance = distance((X[1],Y[1]),goo) #à corriger
     coordonnées = (0u"m",0u"m")
     for x in X
         for y in Y
