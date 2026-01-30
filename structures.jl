@@ -14,6 +14,8 @@ end
 
 abstract type Forme end
 
+""" On considère qu'une plateforme / rectangle est repérée par son coin en bas à gauche
+"""
 struct Rectangle <: Forme
     longueur::typeof(u"m")
     largeur::typeof(u"m")
