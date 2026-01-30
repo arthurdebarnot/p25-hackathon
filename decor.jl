@@ -1,8 +1,8 @@
 include("structures.jl")
 
 # Création des plateformes
-function dessine_moi_une_plateforme!(ax, plateforme::Rectangle)
-    poly!(ax, Point2f[position,(position[1], position[2] + longueur),(position[1] + largeur, position[2]+longueur),(position[1]+largeur,position[2])])
+function dessine_moi_une_plateforme(ax,plateforme :: Rectangle)
+    poly!(ax, Point2f[plateforme.position,(plateforme.position[1], plateforme.position[2] + plateforme.longueur),(plateforme.position[1] + plateforme.largeur, plateforme.position[2]+plateforme.longueur),(plateforme.position[1]+plateforme.largeur,plateforme.position[2])])
 end
 
 function dessine_moi_un_goo!(ax,goo::Goo)
@@ -17,4 +17,8 @@ function dessine_moi_les_liens!(ax,goo ::Goo)
     for voisin in goo.link
         lines!(ax,Point2f[goo.position,voisin.position],color = :blue)
     end
+end
+
+function dessine_moi_tous_les_liens(ax, list_goo)
+    dessine_moi_les_liens.(list_goo)
 end
